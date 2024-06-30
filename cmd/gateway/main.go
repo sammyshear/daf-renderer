@@ -107,7 +107,7 @@ float: right;
 width: calc((${mishnaRect.width}px - var(--column-gap))/2);
 height: ${mishnaRect.height + mishnaRect.y - dafTop}px;
 shape-outside: inset(${mishnaRect.y - dafTop}px 0 0 0);
-margin-left: var(--column-gap);\%s;
+margin-left: var(--column-gap);%s;
 
     rashi.after(tosafotFloater);
 
