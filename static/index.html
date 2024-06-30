@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daf Yomi</title>
+  <script src="https://unpkg.com/htmx.org@2.0.0"
+    integrity="sha384-wS5l5IKJBvK6sPTKa2WZ1js3d947pvWXbPJ1OmWfEuxLgeHcEbjUUA5i9V5ZkpCw"
+    crossorigin="anonymous"></script>
+  <link href="css/daf.css" rel="stylesheet">
+</head>
+
+<body>
+  <div hx-get="/api/daf" hx-swap="outerHTML"></div>
+  <script>
+    const {top: dafTop} = document.querySelector(".daf").getBoundingClientRect();
+    const aside = document.querySelector("aside");
+    const mishnaRect = document.querySelector(".mishna").getBoundingClientRect();
+    const rashi = aside.querySelector(".rashi");
+
+    const tosafotFloater = document.createElement("div");
+    tosafotFloater.style = `
+float: right;
+width: calc((${mishnaRect.width}px - var(--column-gap))/2);
+height: ${mishnaRect.height + mishnaRect.y - dafTop}px;
+shape-outside: inset(${mishnaRect.y - dafTop}px 0 0 0);
+margin-left: var(--column-gap);`;
+
+    rashi.after(tosafotFloater);
+
+    const rashiFloater = document.createElement("div");
+    rashiFloater.style = `
+float: left;
+width: calc((${mishnaRect.width}px - var(--column-gap))/2);
+height: ${mishnaRect.height + mishnaRect.y - dafTop}px;
+shape-outside: inset(${mishnaRect.y - dafTop}px 0 0 0);
+margin-right: var(--column-gap);`;
+
+    rashi.prepend(rashiFloater);
+  </script>
+</body>
+
+</html>

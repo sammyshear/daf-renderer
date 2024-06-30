@@ -1,0 +1,33 @@
+.daf {
+    margin-block: 0;
+    margin-inline: auto;
+    width: 80ch;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 6rem auto 1fr;
+    font-family: serif;
+    text-align: justify;
+    line-height: 1.2;
+    hyphens: auto;
+    --column-gap: 1.25rem;
+}
+
+.mishna {
+    grid-area: 2 / 2 / 3 / 3;
+    font-weight: bold;
+    width: 25ch;
+    z-index: 1; /* so it's selectable */
+}
+
+
+aside {
+    grid-area: 1 / 1 / -1 / -1;
+}
+
+.rashi {
+    font-family: sans-serif;
+    width: calc(50% - var(--column-gap)/2);
+    margin-left: var(--column-gap);
+    float: right;
+}
+
