@@ -33,7 +33,7 @@ func main() {
 
 	http.HandleFunc("/api/daf", daf)
 	listener := gateway.ListenAndServe
-	portStr := "n/a"
+	portStr := ":3000"
 
 	if *port != -1 {
 		portStr = fmt.Sprintf(":%d", port)
