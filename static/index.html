@@ -12,7 +12,16 @@
 </head>
 
 <body>
-  <div hx-get="/api/daf" hx-trigger="load" hx-swap="outerHTML"></div>
+  <article class="daf" hx-get="/api/daf" hx-trigger="load" hx-swap="outerHTML">
+    <div class="mishna">
+    </div>
+    <aside>
+      <div class="rashi">
+      </div>
+      <div>
+      </div>
+    </aside>
+  </article>
   <script>
     const {top: dafTop} = document.querySelector(".daf").getBoundingClientRect();
     const aside = document.querySelector("aside");
