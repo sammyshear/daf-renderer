@@ -13,41 +13,7 @@
 
 <body>
   <article class="daf" hx-get="/api/daf" hx-trigger="load" hx-swap="outerHTML">
-    <div class="mishna">
-    </div>
-    <aside>
-      <div class="rashi">
-      </div>
-      <div>
-      </div>
-    </aside>
   </article>
-  <script>
-    const {top: dafTop} = document.querySelector(".daf").getBoundingClientRect();
-    const aside = document.querySelector("aside");
-    const mishnaRect = document.querySelector(".mishna").getBoundingClientRect();
-    const rashi = aside.querySelector(".rashi");
-
-    const tosafotFloater = document.createElement("div");
-    tosafotFloater.style = `
-float: right;
-width: calc((${mishnaRect.width}px - var(--column-gap))/2);
-height: ${mishnaRect.height + mishnaRect.y - dafTop}px;
-shape-outside: inset(${mishnaRect.y - dafTop}px 0 0 0);
-margin-left: var(--column-gap);`;
-
-    rashi.after(tosafotFloater);
-
-    const rashiFloater = document.createElement("div");
-    rashiFloater.style = `
-float: left;
-width: calc((${mishnaRect.width}px - var(--column-gap))/2);
-height: ${mishnaRect.height + mishnaRect.y - dafTop}px;
-shape-outside: inset(${mishnaRect.y - dafTop}px 0 0 0);
-margin-right: var(--column-gap);`;
-
-    rashi.prepend(rashiFloater);
-  </script>
 </body>
 
 </html>

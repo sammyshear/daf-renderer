@@ -95,6 +95,33 @@ func getDaf() (string, error) {
 			return "", err
 		}
 	}
+	script := fmt.Sprintf(`<script>
+    const {top: dafTop} = document.querySelector(".daf").getBoundingClientRect();
+    const aside = document.querySelector("aside");
+    const mishnaRect = document.querySelector(".mishna").getBoundingClientRect();
+    const rashi = aside.querySelector(".rashi");
+
+    const tosafotFloater = document.createElement("div");
+    tosafotFloater.style = %s
+float: right;
+width: calc((${mishnaRect.width}px - var(--column-gap))/2);
+height: ${mishnaRect.height + mishnaRect.y - dafTop}px;
+shape-outside: inset(${mishnaRect.y - dafTop}px 0 0 0);
+margin-left: var(--column-gap);\%s;
+
+    rashi.after(tosafotFloater);
+
+    const rashiFloater = document.createElement("div");
+    rashiFloater.style = %s
+float: left;
+width: calc((${mishnaRect.width}px - var(--column-gap))/2);
+height: ${mishnaRect.height + mishnaRect.y - dafTop}px;
+shape-outside: inset(${mishnaRect.y - dafTop}px 0 0 0);
+margin-right: var(--column-gap);%s;
+
+    rashi.prepend(rashiFloater);
+  </script>
+`, "`", "`", "`", "`")
 	return fmt.Sprintf(`
     <article class="daf">
     <div class="mishna">
@@ -115,7 +142,8 @@ func getDaf() (string, error) {
       </div>
     </aside>
   </article>
-`, mishna, rashi, tosafot), nil
+  %s
+`, mishna, rashi, tosafot, script), nil
 }
 
 func getCommentary(ref, commentator string) (string, error) {
