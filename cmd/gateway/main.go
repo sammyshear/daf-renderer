@@ -9,7 +9,7 @@ import (
 	"net/http"
 
 	"github.com/antonholmquist/jason"
-	"github.com/apex/gateway"
+	"github.com/carlmjohnson/gateway"
 )
 
 type CalendarItem struct {
